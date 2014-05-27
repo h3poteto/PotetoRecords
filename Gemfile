@@ -38,3 +38,17 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+gem 'rails_config'
+gem 'devise'
+gem 'figaro'
+
+group :development, :test do
+  gem 'debugger'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'rspec'
+  gem 'rspec-mocks'
+end
