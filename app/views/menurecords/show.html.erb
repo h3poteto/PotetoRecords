@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @menurecord.parent_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @menurecord.name %>
+</p>
+
+<p>
+  <strong>Color tag:</strong>
+  <%= @menurecord.color_tag %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @menurecord.date %>
+</p>
+
+<%= link_to 'Edit', edit_menurecord_path(@menurecord) %> |
+<%= link_to 'Back', menurecords_path %>

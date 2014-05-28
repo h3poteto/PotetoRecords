@@ -1,0 +1,31 @@
+<h1>Listing menurecords</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parent</th>
+      <th>Name</th>
+      <th>Color tag</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @menurecords.each do |menurecord| %>
+      <tr>
+        <td><%= menurecord.parent_id %></td>
+        <td><%= menurecord.name %></td>
+        <td><%= menurecord.color_tag %></td>
+        <td><%= menurecord.date %></td>
+        <td><%= link_to 'Show', menurecord %></td>
+        <td><%= link_to 'Edit', edit_menurecord_path(menurecord) %></td>
+        <td><%= link_to 'Destroy', menurecord, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Menurecord', new_menurecord_path %>

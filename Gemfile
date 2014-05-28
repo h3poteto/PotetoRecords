@@ -45,9 +45,6 @@ gem 'figaro'
 
 group :development, :test do
   gem 'debugger'
-end
-
-group :test do
   gem 'rspec-rails'
   gem 'rspec'
   gem 'rspec-mocks'
