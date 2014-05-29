@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528081631) do
+ActiveRecord::Schema.define(version: 20140529095556) do
 
   create_table "menurecords", force: true do |t|
+    t.integer  "user_id"
     t.integer  "parent_id"
     t.string   "name"
     t.string   "color_tag"
     t.float    "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_follows", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "follow_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

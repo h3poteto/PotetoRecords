@@ -1,6 +1,7 @@
 class CreateMenurecords < ActiveRecord::Migration
   def change
     create_table :menurecords do |t|
+      t.integer :user_id
       t.integer :parent_id
       t.string :name
       t.string :color_tag

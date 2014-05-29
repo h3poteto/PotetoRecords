@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :menurecords
-
   devise_for :users
+
+
+  resources :friends
+  resources :menurecords
 
   root :to => "menurecords#index"
 end

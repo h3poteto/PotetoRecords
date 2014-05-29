@@ -1,10 +1,15 @@
 class MenurecordsController < ApplicationController
+  prepend_before_filter :authenticate_with_basic
   before_action :set_menurecord, only: [:show, :edit, :update, :destroy]
 
   # GET /menurecords
   # GET /menurecords.json
   def index
-    @menurecords = Menurecord.all
+    @menurecords = Menurecord.where(user_id: current_user).order("created_at DESC")
+    respond_to do |format|
+      format.html
+      format.json { render json: @menurecords }
+    end
   end
 
   # GET /menurecords/1
