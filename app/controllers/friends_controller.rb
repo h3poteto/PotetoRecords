@@ -5,17 +5,29 @@ class FriendsController < ApplicationController
   # GET /friends.json
   def index
     @user = current_user
-    @firends = @user.follow_users
+    @friends = @user.follow_users
 
     respond_to do |format|
       format.html
-      format.json { render json: @firends }
+      format.json { render json: @friends }
     end
   end
 
   # GET /friends/1
   # GET /friends/1.json
   def show
+    @user = User.find(params[:id])
+    @follower = UserFollow.where(user_id: current_user).where(follow_user_id: @user.id)
+    if @follower.present?
+      @menurecords = @user.menurecords.order("created_at DESC")
+    else
+      @menurecords = nil
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @menurecords }
+    end
   end
 
   # GET /friends/new
