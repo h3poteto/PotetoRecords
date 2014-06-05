@@ -6,10 +6,6 @@ class MenurecordsController < ApplicationController
   # GET /menurecords.json
   def index
     @menurecords = Menurecord.where(user_id: current_user).order("created_at DESC")
-    respond_to do |format|
-      format.html
-      format.json { render json: @menurecords }
-    end
   end
 
   # GET /menurecords/1

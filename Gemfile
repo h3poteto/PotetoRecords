@@ -42,6 +42,7 @@ gem 'spring',        group: :development
 gem 'rails_config'
 gem 'devise'
 gem 'figaro'
+gem 'ransack'
 
 group :development, :test do
   gem 'debugger'
