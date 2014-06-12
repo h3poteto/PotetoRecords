@@ -49,4 +49,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec'
   gem 'rspec-mocks'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end

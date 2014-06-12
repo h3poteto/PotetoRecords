@@ -20,7 +20,7 @@ class FriendsController < ApplicationController
     end
   end
 
-  # GET /firends/1/show_menu1
+  # GET /firends/1/show_menu
   def show_menu
     @user = User.find(params[:id])
     @follower = UserFollow.where(user_id: current_user).where(follow_user_id: @user.id)
