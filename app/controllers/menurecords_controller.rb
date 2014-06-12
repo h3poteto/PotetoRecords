@@ -28,14 +28,14 @@ class MenurecordsController < ApplicationController
   def create
 
     # 親メニューの登録
-    @menurecord = Menurecord.new(user_id: current_user.id, parent_id: -1, name: params[:menurecord][:name].first, color_tag: params[:menurecord][:color_tag], date: params[:menurecord][:date])
+    @menurecord = Menurecord.new(user_id: current_user.id, parent_id: -1, name: params[:menurecord][:name].first[1], color_tag: params[:menurecord][:color_tag], date: params[:menurecord][:date])
 
     respond_to do |format|
       if @menurecord.save
         # 子メニューの登録
         params[:menurecord][:name].each.with_index do |name,index|
           next if index == 0
-          Menurecord.create(user_id: current_user.id, parent_id: @menurecord.id, name: name, color_tag: params[:menurecord][:color_tag], date: params[:menurecord][:date])
+          Menurecord.create(user_id: current_user.id, parent_id: @menurecord.id, name: name[1], color_tag: params[:menurecord][:color_tag], date: params[:menurecord][:date])
         end
         format.html { redirect_to @menurecord, notice: 'Menurecord was successfully created.' }
         format.json { render :show, status: :created, location: @menurecord }
