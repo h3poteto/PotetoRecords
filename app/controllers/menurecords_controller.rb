@@ -27,18 +27,20 @@ class MenurecordsController < ApplicationController
   # POST /menurecords.json
   def create
 
+    datetime = DateTime.new(params[:menurecord][:date][0..3].to_i,params[:menurecord][:date][5..6].to_i, params[:menurecord][:date][8..9].to_i)
+
     # 親メニューの登録
-    @menurecord = Menurecord.new(user_id: current_user.id, parent_id: -1, name: params[:menurecord][:name].first[1], color_tag: params[:menurecord][:color_tag], date: params[:menurecord][:date])
+    @menurecord = Menurecord.new(user_id: current_user.id, parent_id: -1, name: params[:menurecord][:name].first[1], color_tag: params[:menurecord][:color_tag], date: datetime)
 
     respond_to do |format|
       if @menurecord.save
         # 子メニューの登録
         params[:menurecord][:name].each.with_index do |name,index|
           next if index == 0
-          Menurecord.create(user_id: current_user.id, parent_id: @menurecord.id, name: name[1], color_tag: params[:menurecord][:color_tag], date: params[:menurecord][:date])
+          Menurecord.create(user_id: current_user.id, parent_id: @menurecord.id, name: name[1], color_tag: params[:menurecord][:color_tag], date: datetime)
         end
         format.html { redirect_to @menurecord, notice: 'Menurecord was successfully created.' }
-        format.json { render :show, status: :created, location: @menurecord }
+        format.json { render json: @menurecord, status: :created, location: @menurecord }
       else
         format.html { render :new }
         format.json { render json: @menurecord.errors, status: :unprocessable_entity }
