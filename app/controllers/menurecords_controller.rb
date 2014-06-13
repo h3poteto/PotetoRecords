@@ -27,7 +27,7 @@ class MenurecordsController < ApplicationController
   # POST /menurecords.json
   def create
 
-    datetime = DateTime.new(params[:menurecord][:date][0..3].to_i,params[:menurecord][:date][5..6].to_i, params[:menurecord][:date][8..9].to_i)
+    datetime = Time.zone.parse(params[:menurecord][:date])
 
     # 親メニューの登録
     @menurecord = Menurecord.new(user_id: current_user.id, parent_id: -1, name: params[:menurecord][:name].first[1], color_tag: params[:menurecord][:color_tag], date: datetime)
