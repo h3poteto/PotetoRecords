@@ -14,7 +14,7 @@ class FriendsController < ApplicationController
     @user = User.find(params[:id])
     @follower = UserFollow.where(user_id: current_user).where(follow_user_id: @user.id)
     if @follower.present?
-      @menurecords = @user.menurecords.where(parent_id: -1).order("created_at DESC")
+      @menurecords = @user.menurecords.where(parent_id: -1).order("date DESC")
     else
       @menurecords = nil
     end
