@@ -1,0 +1,6 @@
+site:
+  host: "192.168.33.10"
+  url: "192.168.33.10:3000"
+admin:
+  email:
+  password:
