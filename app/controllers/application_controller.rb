@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def authenticate_with_basic
-      return unless params['token'] and params['token'] == "token"
+      return unless params['token'] and params['token'] == ENV["IPHONE_TOKEN"]
 
       request_http_basic_authentication unless authenticate_with_http_basic do |email, pass|
         begin
