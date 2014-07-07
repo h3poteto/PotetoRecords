@@ -30,14 +30,14 @@ class MenurecordsController < ApplicationController
     datetime = Time.zone.parse(params[:menurecord][:date])
 
     # 親メニューの登録
-    @menurecord = Menurecord.new(user_id: current_user.id, parent_id: -1, name: params[:menurecord][:name].first[1], color_tag: params[:menurecord][:color_tag], date: datetime)
+    @menurecord = Menurecord.new(user_id: current_user.id, parent_id: -1, name: params[:menurecord][:name].first[1], color_tag: params[:menurecord][:color_tag], original_id: params[:menurecord][:original_id].to_i , date: datetime)
 
     respond_to do |format|
       if @menurecord.save
         # 子メニューの登録
         params[:menurecord][:name].each.with_index do |name,index|
           next if index == 0
-          Menurecord.create(user_id: current_user.id, parent_id: @menurecord.id, name: name[1], color_tag: params[:menurecord][:color_tag], date: datetime)
+          Menurecord.create(user_id: current_user.id, parent_id: @menurecord.id, name: name[1], color_tag: params[:menurecord][:color_tag], original_id: params[:menurecord][:original_id] ,date: datetime)
         end
         format.html { redirect_to @menurecord, notice: 'Menurecord was successfully created.' }
         format.json { render json: @menurecord, status: :created, location: @menurecord }
