@@ -25,7 +25,7 @@ class FriendsController < ApplicationController
     @user = User.find(params[:id])
     @follower = UserFollow.where(user_id: current_user).where(follow_user_id: @user.id)
     if @follower.present? && params[:menu_id].present?
-      @menu = Menurecord.search(:id_or_parent_id_eq => params[:menu_id].to_i).result
+      @menu = Menurecord.search(:id_or_parent_id_eq => params[:menu_id].to_i).result.order(date: :desc)
     else
       @menu = nil
     end
