@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       get :show_menu
     end
   end
-  resources :menurecords, only: [:index, :show, :new, :create]
+  resources :menurecords, only: [:index, :show, :new, :create] do
+    collection do
+      post :delete
+    end
+  end
 
   root :to => "menurecords#index"
 end
