@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :user_followers, :class_name => "UserFollow", :foreign_key => :follow_user_id
   has_many :follower_users, :through => :user_followers
 
+  validates :name, presence: true, length: { maximum: 50}
+
 
   ID_NOT_FOUND = 'ID_NOT_FOUND'.freeze
   PASSWORD_INVALID = 'PASSWORD_INVALID'.freeze

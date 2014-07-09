@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery unless: proc { @basic_auth_token_request }
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
 
   protected
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) << :name
+    end
     def authenticate_with_basic
       return unless params['token'] and params['token'] == ENV["IPHONE_TOKEN"]
 
